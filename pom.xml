@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.iaaucarre</groupId>
+    <artifactId>automation</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+        </profile>
+    </profiles>
+
+    <properties>
+        <!-- Properties section -->
+        <aspectj.version>1.8.10</aspectj.version>
+        <cucumber.version>1.2.5</cucumber.version>
+        <allure.cucumber.version>2.0-BETA6</allure.cucumber.version>
+        <selenium.java.version>3.4.0</selenium.java.version>
+        <selenium.server.version>3.4.0</selenium.server.version>
+        <guava.version>21.0</guava.version>
+        <maven-compiler-plugin>3.6</maven-compiler-plugin>
+        <maven-surefire-plugin>2.20</maven-surefire-plugin>
+        <allure-maven>2.8</allure-maven>
+        <allure.reportVersion>2.3.1</allure.reportVersion>
+        <org.apache.commons.version>3.4</org.apache.commons.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>6.4.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>6.4.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.3.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Selenium-webdriver dependencies -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium.java.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-server</artifactId>
+            <version>${selenium.server.version}</version>
+        </dependency>
+
+        <!-- Validation dependency -->
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>2.0.1.Final</version>
+        </dependency>
+
+        <!-- Xeger dependency -->
+        <dependency>
+            <groupId>com.github.krraghavan</groupId>
+            <artifactId>xeger</artifactId>
+            <version>1.0.0-RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-configuration2</artifactId>
+            <version>2.7</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.9.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+            <version>1.18.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.3</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+
+            <resources>
+                <resource>
+                    <filtering>true</filtering>
+                    <includes>
+                        <include>**/*.properties</include>
+                    </includes>
+                    <directory>src/main/resources</directory>
+                </resource>
+            </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.6.1</version>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>1.18.8</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+            <!-- display active profile in compile phase -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-help-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>show-profiles</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>active-profiles</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+
+            </plugin>
+        </plugins>
+    </build>
+
+
+
+
+</project>
