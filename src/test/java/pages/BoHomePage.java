@@ -1,10 +1,14 @@
 package pages;
 
+import config.PropertyLoader;
+import org.apache.commons.configuration2.PropertiesConfiguration;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * @version 1.0-SNAPSHOT
@@ -14,9 +18,12 @@ import org.openqa.selenium.support.PageFactory;
 
 public class BoHomePage
 {
+    WebDriver driver;
+    private final long timeOutInSeconds = 7L;
+
     //************** Page components ************************//
 
-    @FindBy(css = "css=.form-group:nth-child(1) > .form-control")
+    @FindBy(css = ".form-group:nth-child(1) > .form-control")
     WebElement loginField;
     @FindBy(css= ".form-group:nth-child(2) > .form-control")
     WebElement passwordField;
@@ -27,10 +34,29 @@ public class BoHomePage
     @FindBy(css = ".form-group:nth-child(2) > .help-block")
     WebElement passwordFieldErrorMessage;
 
+    //*************** PropertyLoader call **********//
+
+    PropertyLoader propertyLoader = PropertyLoader.getInstance();
+
     //*************** Constructor using page factory **********//
     public BoHomePage(WebDriver driver)
     {
+        this.driver = driver ;
+
         PageFactory.initElements(driver, this);
+    }
+
+
+
+    //*************** Bo HomePage Methods **********//
+
+    public void  navigateToHomePage()
+    { String homePageUrl  = propertyLoader.getProperty("base-url");
+        driver.navigate().to(homePageUrl);
+        WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
+        wait.until(ExpectedConditions.visibilityOf(loginField));
+
+
     }
 
     public void enterLogin (String login)
@@ -40,7 +66,7 @@ public class BoHomePage
 
     public void enterPassword (String password)
     {
-        loginField.sendKeys(password);
+        passwordField.sendKeys(password);
     }
 
     public void enterCredentials (String login, String password)
@@ -48,6 +74,12 @@ public class BoHomePage
         enterLogin(login);
         enterPassword(password);
     }
+    public void clickLoginButton ()
+    {
+        loginButton.click();
+    }
+
+
 
     public void login (String login, String password)
     {

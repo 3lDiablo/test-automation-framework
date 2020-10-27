@@ -1,5 +1,7 @@
 package config;
 
+import java.util.Arrays;
+
 public enum BrowserType
 {
     CHROME("chrome"),
@@ -17,5 +19,12 @@ public enum BrowserType
     public String getBrowserName()
     {
         return browserName;
+    }
+
+    public static BrowserType getEnum(String browserName)
+    {
+        for(BrowserType v : values())
+            if(v.getBrowserName().equalsIgnoreCase(browserName)) return v;
+        throw new IllegalArgumentException("Unknown enum type " + browserName + ", Allowed values are " + Arrays.toString(values()));
     }
 }

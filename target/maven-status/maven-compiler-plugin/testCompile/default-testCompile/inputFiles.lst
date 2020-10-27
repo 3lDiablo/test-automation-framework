@@ -1,0 +1,10 @@
+/home/mejdi/work/personal/test-automation-framework/src/test/java/config/BrowserType.java
+/home/mejdi/work/personal/test-automation-framework/src/test/java/runners/TestRunner.java
+/home/mejdi/work/personal/test-automation-framework/src/test/java/pages/BoHomePage.java
+/home/mejdi/work/personal/test-automation-framework/src/test/java/utils/ScreenshotUtils.java
+/home/mejdi/work/personal/test-automation-framework/src/test/java/config/SystemConfig.java
+/home/mejdi/work/personal/test-automation-framework/src/test/java/utils/BrowserUtils.java
+/home/mejdi/work/personal/test-automation-framework/src/test/java/stepDefs/boLoginSteps.java
+/home/mejdi/work/personal/test-automation-framework/src/test/java/config/PropertyLoader.java
+/home/mejdi/work/personal/test-automation-framework/src/test/java/config/WebDriverManager.java
+/home/mejdi/work/personal/test-automation-framework/src/test/java/utils/StringUtils.java

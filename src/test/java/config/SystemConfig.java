@@ -1,7 +1,6 @@
 package config;
 
 
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * @version 1.0-SNAPSHOT
@@ -9,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
  * Class to management system environment properties
  */
 
-@Slf4j
 public class SystemConfig
 {
     /**
@@ -19,7 +17,6 @@ public class SystemConfig
     public static String getOS()
     {
         String OS = System.getProperty("os.name").toLowerCase();
-        log.info("Application running on : {}",OS);
         return OS;
     }
 

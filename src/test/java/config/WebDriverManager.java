@@ -4,14 +4,22 @@ package config;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+
+
+import static config.BrowserType.FIREFOX;
 
 public class WebDriverManager
 {
-    private String driversBasePath = PropertyLoader.getInstance().getProperty("drivers");
-    private String chromeDriverPath = PropertyLoader.getInstance().getProperty("driver.chrome ");
-    private String firefoxDriverPath = PropertyLoader.getInstance().getProperty("driver.firefox");
 
-    public  String getDriverPath(BrowserType browserType)
+    private static final String driversBasePath = PropertyLoader.getInstance().getProperty("drivers");
+    private static final String chromeDriverPath = PropertyLoader.getInstance().getProperty("driver.chrome");
+    private static final String firefoxDriverPath = PropertyLoader.getInstance().getProperty("driver.firefox");
+
+    static BrowserType browserType = BrowserType.getEnum(System.getProperty("browser","chrome"));
+
+    public  static String getDriverPath(BrowserType browserType)
     {
         String selectedDriver;
         switch (browserType)
@@ -35,26 +43,45 @@ public class WebDriverManager
 
 
         String driverFileName = PropertyLoader.getInstance().getProperty("driver."+ browserType.getBrowserName()+"."+osName);
-        return driversBasePath + selectedDriver + driverFileName;
+        String driverPath = driversBasePath  +"/"+ driverFileName;
+
+
+        return driverPath;
 
     }
 
-    public void intDrivers ()
+    public static void initDrivers ()
     {
+
         System.setProperty("webdriver.chrome.driver",getDriverPath(BrowserType.CHROME));
-        System.setProperty("webdriver.firefox.driver",getDriverPath(BrowserType.FIREFOX));
+        System.setProperty("webdriver.gecko.driver",getDriverPath(FIREFOX));
+
 
     }
 
-    public WebDriver loadDriver(BrowserType browserType)
+    public static WebDriver loadDriver()
     {
-        switch (browserType)
+
+
+        initDrivers();
+
+        switch (browserType.getBrowserName())
         {
 
-            case FIREFOX:
-                return new FirefoxDriver();
+            case "firefox":
+            {
+                DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+                return new FirefoxDriver(capabilities);
+
+            }
+
             default:
-                return new ChromeDriver();
+            {
+
+                DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+                return new ChromeDriver(capabilities);
+            }
+
         }
     }
 }
