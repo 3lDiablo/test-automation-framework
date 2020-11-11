@@ -19,6 +19,8 @@ public class WebDriverManager
 
     static BrowserType browserType = BrowserType.getEnum(System.getProperty("browser","chrome"));
 
+    private static WebDriver driver;
+
     public  static String getDriverPath(BrowserType browserType)
     {
         String selectedDriver;
@@ -71,7 +73,7 @@ public class WebDriverManager
             case "firefox":
             {
                 DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-                return new FirefoxDriver(capabilities);
+                driver = new FirefoxDriver(capabilities);
 
             }
 
@@ -79,9 +81,20 @@ public class WebDriverManager
             {
 
                 DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-                return new ChromeDriver(capabilities);
+                driver =  new ChromeDriver(capabilities);
             }
 
         }
+
+        return driver;
     }
+
+    public static WebDriver getDriver()
+    {
+        if (driver == null)
+            return loadDriver();
+        return driver;
+    }
+
+
 }
