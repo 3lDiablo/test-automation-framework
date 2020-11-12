@@ -24,7 +24,7 @@ public class SystemConfig
      * Check if the current OS is windows
      * @return true is the current OS is windows
      */
-    public boolean isWindows()
+    public static boolean isWindows()
     {
         String OS = getOS();
         return (OS.indexOf("win") >= 0);
@@ -35,7 +35,7 @@ public class SystemConfig
      * @return true if the current OS is MacOS
      */
 
-    public boolean isMac()
+    public static boolean isMac()
     {
         String OS = getOS();
         return (OS.indexOf("mac") >= 0);
@@ -45,7 +45,7 @@ public class SystemConfig
      * Check if the current OS is a Linux system
      * @return true if the current OS  is a Linux system
      */
-    public boolean isLinux() {
+    public static boolean isLinux() {
         String OS = getOS();
         return (OS.indexOf("nux") >= 0 || OS.indexOf("aix") > 0);
     }

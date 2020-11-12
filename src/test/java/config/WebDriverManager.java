@@ -4,6 +4,7 @@ package config;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 
@@ -14,10 +15,12 @@ public class WebDriverManager
 {
 
     private static final String driversBasePath = PropertyLoader.getInstance().getProperty("drivers");
-    private static final String chromeDriverPath = PropertyLoader.getInstance().getProperty("driver.chrome");
-    private static final String firefoxDriverPath = PropertyLoader.getInstance().getProperty("driver.firefox");
+    private static final String chromeDriverPath = PropertyLoader.getInstance().getProperty("driver_chrome");
+    private static final String firefoxDriverPath = PropertyLoader.getInstance().getProperty("driver_firefox");
 
     static BrowserType browserType = BrowserType.getEnum(System.getProperty("browser","chrome"));
+
+    private static WebDriver driver;
 
     public  static String getDriverPath(BrowserType browserType)
     {
@@ -42,7 +45,7 @@ public class WebDriverManager
             osName ="linux";
 
 
-        String driverFileName = PropertyLoader.getInstance().getProperty("driver."+ browserType.getBrowserName()+"."+osName);
+        String driverFileName = PropertyLoader.getInstance().getProperty("driver_"+ browserType.getBrowserName()+"_"+osName);
         String driverPath = driversBasePath  +"/"+ driverFileName;
 
 
@@ -70,8 +73,13 @@ public class WebDriverManager
 
             case "firefox":
             {
+
                 DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-                return new FirefoxDriver(capabilities);
+                capabilities.setCapability("marionette", true);
+                FirefoxOptions opt = new FirefoxOptions();
+                opt.addTo(capabilities);
+                //FirefoxDriver driver =  new FirefoxDriver(opt);
+                driver = new FirefoxDriver(capabilities);
 
             }
 
@@ -79,9 +87,20 @@ public class WebDriverManager
             {
 
                 DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-                return new ChromeDriver(capabilities);
+                driver =  new ChromeDriver(capabilities);
             }
 
         }
+
+        return driver;
     }
+
+    public static WebDriver getDriver()
+    {
+        if (driver == null)
+            return loadDriver();
+        return driver;
+    }
+
+
 }
