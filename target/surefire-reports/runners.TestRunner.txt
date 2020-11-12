@@ -1,0 +1,24 @@
+-------------------------------------------------------------------------------
+Test set: runners.TestRunner
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 4.578 sec <<< FAILURE! - in runners.TestRunner
+runScenario(runners.TestRunner)  Time elapsed: 2.627 sec  <<< FAILURE!
+io.cucumber.core.exception.CucumberException: Failed to instantiate class stepDefs.boLoginSteps
+Caused by: java.lang.reflect.InvocationTargetException
+Caused by: org.openqa.selenium.SessionNotCreatedException: 
+Unable to find a matching set of capabilities
+Build info: version: '3.5.1', revision: '9c21bb67ef', time: '2017-08-17T15:26:08.955Z'
+System info: host: 'debian', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '4.19.0-12-amd64', java.version: '11.0.8'
+Driver info: driver.version: FirefoxDriver
+remote stacktrace: 
+
+runScenario(runners.TestRunner)  Time elapsed: 0.08 sec  <<< FAILURE!
+io.cucumber.core.exception.CucumberException: Failed to instantiate class stepDefs.boLoginSteps
+Caused by: java.lang.reflect.InvocationTargetException
+Caused by: org.openqa.selenium.SessionNotCreatedException: 
+Unable to find a matching set of capabilities
+Build info: version: '3.5.1', revision: '9c21bb67ef', time: '2017-08-17T15:26:08.955Z'
+System info: host: 'debian', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '4.19.0-12-amd64', java.version: '11.0.8'
+Driver info: driver.version: FirefoxDriver
+remote stacktrace: 
+

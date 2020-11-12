@@ -12,7 +12,7 @@ import pages.BoLoginPage;
 public class boLoginSteps
 {
 
-    private WebDriver driver = WebDriverManager.getDriver();
+    private final WebDriver driver = WebDriverManager.getDriver();
     BoLoginPage boLoginPage =  new BoLoginPage(driver) ;
 
     @Etantdonné("Un administrateur ouvre la page d'acceuil du back office Momi")

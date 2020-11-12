@@ -10,7 +10,7 @@ Fonctionnalité: : En tant qu'admnistrateur je voudrais me déconnecter du back 
 
 
   @momi_bo_logout
-  Scénario: : Logout when connected
+  Scénario: : Se déconnecter du Back Office après s'être connecté
     Lorsqu'un administrateur clique sur le menu de l'utilisateur
     Et qu'il clique sur le bouton Déconnexion
     Alors il se déconnecte et est renvoyé sur la page d'authentification

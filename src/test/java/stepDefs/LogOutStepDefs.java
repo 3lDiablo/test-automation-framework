@@ -15,18 +15,10 @@ import pages.BoLoginPage;
 public class LogOutStepDefs
 {
 
-    private WebDriver driver = WebDriverManager.getDriver();
+    private final WebDriver driver = WebDriverManager.getDriver();
     BoHomePage boHomePage = new BoHomePage(driver);
     BoLoginPage boLoginPage = new BoLoginPage(driver);
 
-//    public LogOutStepDefs() {
-//        Lorsqu("^un administrateur clique sur le menu de l'utilisateur$", () -> {
-//        });
-//        Etqu("^il clique sur le bouton Déconnexion$", () -> {
-//        });
-//        Alors("^il se déconnecte et est renvoyé sur la page d'authentification$", () -> {
-//        });
-//    }
 
     @Lorsqu("un administrateur clique sur le menu de l'utilisateur")
     public void unAdministrateurCliqueSurLeMenuDeLUtilisateur()
